@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: 'Build'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,9 +24,28 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-  
-  kustomize:
+      uses: actions/upload-artifact@v2
+      with:
+        path: builds/libs
+
+  docker:
     needs: build
+    name: 'Docker'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          path: builds/libs
+      - name: Build Docker Image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+      
+  kustomize:
+    needs: docker
     name: 'Kustomize'
     runs-on: ubuntu-latest
     steps:
