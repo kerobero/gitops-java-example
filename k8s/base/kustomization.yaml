@@ -9,3 +9,4 @@ patchesStrategicMerge:
 - strategy.yaml
 - security.yaml
 - probes.yaml
+- service.yaml
