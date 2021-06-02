@@ -16,7 +16,7 @@ spec:
         app: app-poc
     spec:
       containers:
-      - image: gcr.io/project/app-poc
+      - image: kerobero/app-poc:v1
         imagePullPolicy: Always
         name: app-poc
       dnsPolicy: ClusterFirst
