@@ -5,8 +5,8 @@ commonLabels:
 resources:
 - deployment.yaml
 - pdb.yaml
+- service.yaml
 patchesStrategicMerge:
 - strategy.yaml
 - security.yaml
 - probes.yaml
-- service.yaml
