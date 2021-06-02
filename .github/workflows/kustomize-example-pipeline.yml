@@ -29,7 +29,10 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        path: build/libs/actuator-service-0.0.1.jar
+        path: build/libs/*
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: build/libs/
 
   docker:
     needs: build
@@ -41,7 +44,10 @@ jobs:
     - name: Download Artifact
       uses: actions/download-artifact@v2
       with:
-        path: build/libs/actuator-service-0.0.1.jar
+        path: build/libs/
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: build/libs/
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
