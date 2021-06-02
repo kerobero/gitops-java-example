@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app-poc
+  name: app-poc
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: app-poc
+  template:
+    metadata:
+      labels:
+        app: app-poc
+    spec:
+      containers:
+      - image: gcr.io/project/app-poc
+        imagePullPolicy: Always
+        name: app-poc
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
