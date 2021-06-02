@@ -28,7 +28,7 @@ jobs:
       uses: karancode/kustomize-github-action@master
       with:
         kustomize_version: '3.0.0'
-        kustomize_build_dir: '.'
+        kustomize_build_dir: 'k8s'
         kustomize_comment: true
         kustomize_output_file: "gitops/rendered.yaml"
         kustomize_build_options: "--load_restrictor none"
